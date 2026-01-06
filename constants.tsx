@@ -41,25 +41,25 @@ export const PROJECTS: Project[] = [
 export const CERTIFICATES: Certificate[] = [
   {
     id: 'c1',
-    title: 'Google UX Design Professional Certificate',
-    issuer: 'Coursera - Google',
-    year: '2023',
+    title: 'Digital marketing course',
+    issuer: '02 academy',
+    year: '2025',
     link: '#',
     icon: 'school'
   },
   {
     id: 'c2',
-    title: 'Meta Frontend Developer Certificate',
-    issuer: 'Coursera - Meta',
-    year: '2022',
+    title: 'Software Development bootcamp',
+    issuer: 'GoMyCode',
+    year: '2025',
     link: '#',
     icon: 'code'
   },
   {
     id: 'c3',
-    title: 'UI/UX Design Specialization',
-    issuer: 'California Institute of the Arts',
-    year: '2021',
+    title: 'Complete UI/UX design, Figma',
+    issuer: 'Udemy',
+    year: '2024',
     link: '#',
     icon: 'brush'
   }
