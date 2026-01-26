@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from 'react';
 
 interface ProjectDetailProps {
@@ -7,7 +8,7 @@ interface ProjectDetailProps {
 }
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
-  // We'll focus on the Finance Dashboard for this detailed view
+  // We'll focus on the Law Firm / Finance Dashboard for this detailed view
   const isFinance = projectId === '2';
 
   useEffect(() => {
@@ -20,25 +21,32 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 pt-12">
           <div>
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-[0.2em] rounded-full mb-6">Case Study</span>
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-[0.2em] rounded-full mb-6">
+              <span className="material-symbols-outlined text-[12px] align-middle mr-1">assignment</span>
+              Case Study: FJKO Law Firm
+            </span>
             <h1 className="text-5xl lg:text-7xl font-serif font-black text-neutral-text leading-[1.1] mb-8">
-              {isFinance ? "Optimizing Wealth: A Modern Finance Dashboard" : "Project Case Study"}
+              Designing a Modern Law Firm Website Experience
             </h1>
             <p className="text-xl text-gray-500 leading-relaxed mb-10 max-w-xl">
-              Transforming complex financial data into a client-focused digital platform that prioritizes clarity, accessibility, and professional trust.
+              Establishing a digital presence for FJKO that centers on clarity, accessibility, and professional trust to bridge the gap between legal expertise and client needs.
             </p>
             <div className="flex gap-4">
-              <button className="bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">View Live Site</button>
-              <button className="bg-neutral-background text-gray-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all border border-gray-100">Read Process</button>
+              <a href="https://fjkolaw.com/">
+              <button className="bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all">View Live site</button>
+              </a>
+              
             </div>
           </div>
           <div className="relative group">
             <div className="absolute inset-0 bg-primary/5 rounded-[3rem] rotate-2 -z-10 transition-transform group-hover:rotate-1"></div>
-            <img 
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" 
-              alt="Dashboard Mockup" 
-              className="rounded-[2.5rem] shadow-2xl border-4 border-white"
-            />
+            <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-4 border-white">
+              <img 
+                src="/firm.png" 
+                alt="Law Firm Dashboard Mockup" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
           </div>
         </div>
 
@@ -46,19 +54,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-y border-gray-100 mb-24">
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Role</p>
-            <p className="font-bold text-neutral-text">Lead UI/UX Designer</p>
+            <p className="font-bold text-neutral-text">UX/UI Designer</p>
           </div>
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Tools</p>
-            <p className="font-bold text-neutral-text">Figma, React, Tailwind</p>
+            <p className="font-bold text-neutral-text">Figma</p>
           </div>
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Timeline</p>
-            <p className="font-bold text-neutral-text">4 Weeks (Feb 2024)</p>
+            <p className="font-bold text-neutral-text">4 weeks (Oct 2025)</p>
           </div>
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Deliverables</p>
-            <p className="font-bold text-neutral-text">Research, UI, Proto</p>
+            <p className="font-bold text-neutral-text">Research, UI Design</p>
           </div>
         </div>
 
@@ -66,12 +74,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         <div className="max-w-4xl mx-auto mb-32">
           <h2 className="text-3xl font-serif font-black mb-8 text-center">The Challenge</h2>
           <p className="text-lg text-gray-600 leading-relaxed text-center mb-12">
-            Users found traditional banking interfaces cold and intimidating. Analytics showed a high drop-off rate on the "Investment Overview" page, and users reported difficulty tracking real-time asset changes on mobile devices.
+            FJKO is a newly established law firm entering a highly competitive market. They faced the unique challenge of needing to appear as a modern, forward-thinking practice while simultaneously projecting the authority and reliability of a long-standing institution.
+            <br /><br />
+            The primary goal was to create an approachable yet authoritative digital presence that simplifies the often-intimidating process of seeking legal counsel.
           </p>
           <div className="bg-primary/5 p-12 rounded-[2rem] border border-primary/10 relative">
-            <span className="material-symbols-outlined absolute top-6 left-6 text-primary/30 text-5xl">format_quote</span>
             <p className="text-xl italic font-medium text-neutral-text text-center relative z-10 leading-relaxed">
-              "How might we design a digital experience that retains the brand's legacy of authority while making financial services accessible and less intimidating for new investors?"
+              "How might we build a digital foundation for FJKO that balances approachable accessibility with the gravitas required of professional legal services?"
             </p>
           </div>
         </div>
@@ -79,183 +88,248 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         {/* Research & Discovery */}
         <div className="mb-32">
           <div className="flex items-center gap-4 mb-12">
-            <span className="material-symbols-outlined text-primary text-3xl">search</span>
+            <span className="material-symbols-outlined text-primary text-3xl">explore</span>
             <h2 className="text-3xl font-serif font-black">Research & Discovery</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: 'visibility', title: 'Data Transparency', desc: 'Users expressed frustration with hidden fee structures. They wanted clear, plain-language explanations.' },
-              { icon: 'smartphone', title: 'Mobile Urgency', desc: '65% of local traffic came from mobile devices, often during high-volatility market situations.' },
-              { icon: 'groups', title: 'Human Connection', desc: 'Potential clients wanted to "see" who was managing their assets. Real human visuals increased trust.' }
+              { icon: 'smartphone', title: 'Mobile-First Behavior', desc: 'Data showed clients often research legal issues during high-pressure moments, necessitating a robust mobile experience.', color: 'text-pink-500' },
+              { icon: 'lightbulb', title: 'Immediate Clarity', desc: 'Users drop off if practice areas aren\'t immediately visible. Navigation must provide answers within three seconds of landing.', color: 'text-rose-400' },
+              { icon: 'verified_user', title: 'Trust & Credibility', desc: 'Legal expertise must be validated through clear credential displays, accolades, and transparent service descriptions.', color: 'text-indigo-400' },
+              { icon: 'groups', title: 'Human Connection', desc: 'Law is personal. Users prioritize seeing the faces of the attorneys they will be working with to build initial rapport.', color: 'text-red-400' }
             ].map((item, i) => (
-              <div key={i} className="p-10 bg-neutral-background rounded-[2.5rem] border border-gray-100 hover:border-primary/20 transition-colors">
-                <div className="h-12 w-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary mb-6">
-                  <span className="material-symbols-outlined">{item.icon}</span>
+              <div key={i} className="p-10 bg-white rounded-[2rem] border border-gray-50 shadow-sm hover:shadow-md transition-shadow">
+                <div className={`h-12 w-12 flex items-center justify-center mb-6 ${item.color}`}>
+                  <span className="material-symbols-outlined text-3xl">{item.icon}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg font-bold mb-4">{item.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Ideation Corkboard */}
+        {/* Ideation */}
         <div className="mb-32">
           <div className="flex items-center gap-4 mb-12">
-            <span className="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+            <span className="material-symbols-outlined text-primary text-3xl">sticky_note_2</span>
             <h2 className="text-3xl font-serif font-black">Ideation</h2>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-            <div className="lg:col-span-1">
-              <p className="text-lg text-gray-500 leading-relaxed">
-                During brainstorming, I mapped out potential features. We focused on the "Investor Journey" from the initial dashboard check to deep-dive analytics.
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-lg text-gray-500 leading-relaxed mb-8">
+                The ideation phase was about translating raw empathy maps and user pain points into a cohesive digital structure. We moved from sticky-note brainstorming to a refined information hierarchy.
               </p>
-              <ul className="mt-8 space-y-4">
-                {['Quick Balance View', 'AI-driven Insights', 'Dark Mode Toggle'].map(li => (
-                  <li key={li} className="flex items-center gap-3 font-bold text-gray-400">
-                    <span className="h-1.5 w-1.5 bg-primary rounded-full"></span> {li}
+              <ul className="space-y-4">
+                {[
+                  'PRIORITIZING CASE EVALUATION',
+                  'STREAMLINED ATTORNEY DIRECTORY',
+                  'CONTEXTUAL RESOURCES'
+                ].map((li, i) => (
+                  <li key={i} className="flex items-center gap-3 text-xs font-black tracking-widest text-primary uppercase">
+                    <span className="material-symbols-outlined text-primary text-sm">check_circle</span> {li}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="lg:col-span-2 relative h-[400px] bg-neutral-background rounded-[2.5rem] border-2 border-dashed border-gray-200 p-8 overflow-hidden">
-               {/* Post-it Notes */}
-               <div className="absolute top-10 left-10 w-48 h-48 bg-yellow-100 shadow-xl rotate-[-2deg] p-6 flex items-center text-sm font-bold text-yellow-800">
-                 Need a "Real-time" status indicator always visible
-               </div>
-               <div className="absolute bottom-10 left-32 w-48 h-48 bg-cyan-100 shadow-xl rotate-[3deg] p-6 flex items-center text-sm font-bold text-cyan-800">
-                 Trust badges (Bank level security) need to be higher up
-               </div>
-               <div className="absolute top-24 right-40 w-48 h-48 bg-green-100 shadow-xl rotate-[-5deg] p-6 flex items-center text-sm font-bold text-green-800">
-                 Add a direct advisor link for mobile users
-               </div>
-               <div className="absolute top-10 right-10 w-40 h-40 bg-purple-100 shadow-xl rotate-[4deg] p-4 flex items-center text-xs font-bold text-purple-800">
-                 Simplify navigation. Top nav bar hides 80% of tools.
-               </div>
+            <div className="relative group">
+            <div className="absolute inset-0 bg-primary/5 rounded-[3rem] rotate-2 -z-10 transition-transform group-hover:rotate-1"></div>
+            <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-4 border-white">
+              <img 
+                src="/sticky.png" 
+                alt="Law Firm sticky notes mock up" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
+          </div>
+            {/* <div className="relative h-[450px] bg-neutral-background rounded-[2.5rem] border border-gray-100 p-12 overflow-hidden flex items-center justify-center gap-4 flex-wrap">
+               <div className="w-40 h-40 bg-yellow-100 shadow-lg rotate-[-3deg] p-4 flex items-center text-center text-xs font-bold text-yellow-800">
+                 Consolidate "Expertise" into clear pillars
+               </div>
+               <div className="w-40 h-40 bg-cyan-100 shadow-lg rotate-[2deg] p-4 flex items-center text-center text-xs font-bold text-cyan-800">
+                 Professional photography over stock
+               </div>
+               <div className="w-40 h-40 bg-pink-100 shadow-lg rotate-[-1deg] p-4 flex items-center text-center text-xs font-bold text-pink-800">
+                 Mobile CTA: One-tap call to trial
+               </div>
+            </div> */}
           </div>
         </div>
 
-        {/* Information Architecture Section */}
+        {/* Information Architecture */}
         <div className="mb-32">
           <h2 className="text-3xl font-serif font-black mb-8 text-center">Information Architecture</h2>
           <p className="text-lg text-gray-500 text-center mb-16 max-w-3xl mx-auto">
-            We simplified the navigation from 12 top-level items to 5 focused categories, prioritizing the user's primary goal: finding and managing their specific wealth goals.
+            A streamlined sitemap was developed to reduce cognitive friction. We grouped content into seven logical pillars that guide a visitor from initial inquiry to hiring.
           </p>
-          <div className="bg-neutral-background rounded-[2.5rem] p-12 border border-gray-100">
-            <div className="flex flex-col items-center">
-              <div className="px-8 py-4 bg-primary text-white font-bold rounded-xl mb-12 shadow-lg">Homepage</div>
-              <div className="w-px h-12 bg-gray-200"></div>
-              <div className="w-full h-px bg-gray-200 max-w-4xl"></div>
-              <div className="flex justify-between w-full max-w-4xl mt-0">
-                {['Overview', 'Portfolio', 'Analytics', 'Insights', 'Settings'].map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center">
-                    <div className="w-px h-12 bg-gray-200"></div>
-                    <div className="px-6 py-3 bg-white border border-gray-100 rounded-lg text-sm font-bold shadow-sm">{item}</div>
-                  </div>
-                ))}
-              </div>
+         <div className="relative group">
+            <div className="absolute inset-0 bg-primary/5 rounded-[3rem] rotate-2 -z-10 transition-transform group-hover:rotate-1"></div>
+            <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-4 border-white">
+              <img 
+                src="/sitemapp.png" 
+                alt="Law firm sitemap" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
           </div>
+            <div className="mt-12 text-white/50 text-[10px] font-bold tracking-[0.2em] uppercase">Site Map Structure</div>
+          
         </div>
 
-        {/* Design Approach */}
+        {/* Visual Identity */}
         <div className="mb-32">
-          <h2 className="text-3xl font-serif font-black mb-16">Design Approach: Trust & Clarity</h2>
+          <h2 className="text-3xl font-serif font-black mb-16">Visual Identity: Vibrant & Modern</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div className="space-y-12">
               <p className="text-lg text-gray-500 leading-relaxed">
-                The visual language needed to strike a balance between professional authority and modern accessibility. I chose a deep navy as the primary anchor for trust, accented with a vibrant pink for calls-to-action.
+                The FJKO palette utilizes Navy blue and gold which i believe are traditional markers of prestige and reliability and also reimagined with modern digital accessibility standards in mind.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                 <div className="flex items-center gap-4">
-                   <div className="h-14 w-14 bg-[#1a2b4b] rounded-2xl shadow-inner border-2 border-white"></div>
+              <div className="space-y-6">
+                 <div className="flex items-center gap-6">
+                   <div className="h-14 w-14 bg-[#0F172A] rounded-lg shadow-inner"></div>
                    <div>
-                     <p className="font-bold text-sm">Deep Navy #1A2B4B</p>
-                     <p className="text-xs text-gray-400 font-medium italic">Authority, Wealth</p>
+                     <p className="font-bold text-sm uppercase tracking-widest">Midnigt Navy #0F172A</p>
+                     <p className="text-xs text-gray-400 italic">Primary-Authority, Expertise, Stability</p>
                    </div>
                  </div>
-                 <div className="flex items-center gap-4">
-                   <div className="h-14 w-14 bg-primary rounded-2xl shadow-inner border-2 border-white"></div>
+                 <div className="flex items-center gap-6">
+                   <div className="h-14 w-14 bg-[#B59410] border border-gray-100 rounded-lg shadow-inner"></div>
                    <div>
-                     <p className="font-bold text-sm">Vibrant Pink #EF3985</p>
-                     <p className="text-xs text-gray-400 font-medium italic">Action, Clarity</p>
+                     <p className="font-bold text-sm uppercase tracking-widest">Heritage Gold #B59410</p>
+                     <p className="text-xs text-gray-400 italic">Accent-Precision, Prestige, Action</p>
                    </div>
                  </div>
               </div>
-              <div className="p-8 bg-neutral-background rounded-[2rem] flex items-center gap-8">
-                 <div className="h-12 w-12 flex items-center justify-center bg-white rounded-xl shadow-sm">
-                   <span className="material-symbols-outlined text-gray-400">text_fields</span>
+              <div className="p-8 bg-neutral-background rounded-2xl flex items-center gap-8">
+                 <div className="h-12 w-12 flex items-center justify-center bg-white rounded-xl shadow-sm border border-gray-100">
+                   <span className="text-xl font-serif font-black">Aa</span>
                  </div>
                  <div>
-                   <p className="font-serif font-black text-xl mb-1">Merriweather & Inter</p>
-                   <p className="text-sm text-gray-500 font-medium">Classic Serif headings, Clean Sans body</p>
+                   <p className="font-serif font-black text-lg mb-1">Merriweather & Public Sans</p>
+                   <p className="text-sm text-gray-500 font-medium italic">Editorial Serif for impact, Neutral Sans for utility</p>
                  </div>
               </div>
             </div>
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1543286386-713bdd54867e?auto=format&fit=crop&w=800&q=80" 
+                src="/mock.png" 
                 alt="Moodboard" 
                 className="rounded-[2.5rem] shadow-xl"
               />
-              <p className="mt-6 text-xs font-bold text-gray-400 uppercase tracking-widest text-center italic">
-                Moodboard Inspiration: Clean lines, organized spaces, authoritative textures.
+              <p className="mt-6 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center italic">
+                MOODBOARD: MODERN HIGH-IMPACT PROFESSIONALISM
               </p>
             </div>
           </div>
         </div>
 
-        {/* Comparison Section (Lo-Fi to Hi-Fi) */}
+        {/* Hierarchy Section */}
         <div className="mb-32">
-          <div className="flex justify-between items-end mb-12">
-            <h2 className="text-3xl font-serif font-black">From Lo-Fi to Hi-Fi</h2>
-            <div className="flex gap-4 p-1 bg-neutral-background rounded-full border border-gray-100">
-              <span className="px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-gray-400">Wireframe</span>
-              <span className="px-4 py-1.5 text-[10px] font-black uppercase tracking-widest bg-white rounded-full text-primary shadow-sm">Final UI</span>
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-3xl font-serif font-black">Refining the Hierarchy</h2>
+            <div className="flex items-center gap-4 text-[8px] font-black uppercase tracking-[0.2em] text-gray-400">
+              <span>Structural Wireframe</span>
+              <span className="material-symbols-outlined text-xs">arrow_forward</span>
+              <span className="text-primary">Final Interface</span>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Lo-Fi Image */}
-            <div className="bg-neutral-background rounded-[2.5rem] p-4 flex flex-col items-center border border-gray-200 group">
-               <div className="w-full aspect-[4/3] bg-white rounded-[2rem] overflow-hidden">
-                 <img 
-                  src="https://images.unsplash.com/photo-1586717791821-3f44a563dc4c?auto=format&fit=crop&w=800&q=80" 
-                  alt="Low Fidelity Wireframe" 
-                  className="w-full h-full object-cover grayscale opacity-60 transition-all group-hover:opacity-100"
-                 />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div className="flex flex-col items-center group">
+               {/* <div className="w-full aspect-[4/5] bg-[#f9fafb] rounded-[2.5rem] p-8 border border-gray-100 shadow-sm flex flex-col gap-4">
+                 <div className="w-full h-8 bg-gray-200/50 rounded-lg"></div>
+                 <div className="w-2/3 h-12 bg-gray-200/50 rounded-lg"></div>
+                 <div className="w-full flex-grow bg-white border-2 border-dashed border-gray-200 rounded-2xl flex items-center justify-center">
+                    <span className="text-gray-200 material-symbols-outlined text-6xl">image</span>
+                 </div>
+                 <div className="grid grid-cols-3 gap-2">
+                   <div className="h-16 bg-gray-100 rounded-lg"></div>
+                   <div className="h-16 bg-gray-100 rounded-lg"></div>
+                   <div className="h-16 bg-gray-100 rounded-lg"></div>
+                 </div>
+               </div> */}
+               <div className="flex flex-col items-center group">
+               <div className="w-full h-65 bg-[#c1bab5] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+                  <img 
+                    src="/Resources.png" 
+                    alt="Final UI" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-8 left-0 right-0 px-8">
+                    <button className="w-full py-4 bg-[#EB2777] text-white text-[10px] font-black uppercase tracking-widest rounded-lg shadow-xl hover:scale-[1.02] transition-transform">
+                      Hover to scroll prototype
+                    </button>
+                  </div>
                </div>
-               <p className="mt-4 text-xs font-bold text-gray-400 uppercase tracking-widest">Low-Fidelity Wireframe</p>
+               <p className="mt-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Iteration 01: Core Structure</p>
+               </div>
+               <div className="flex flex-col items-center group">
+               <div className="w-full h-65 bg-[#c1bab5] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+                  <img 
+                    src="/ppl.png" 
+                    alt="Final UI" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-8 left-0 right-0 px-8">
+                    <button className="w-full py-4 bg-[#EB2777] text-white text-[10px] font-black uppercase tracking-widest rounded-lg shadow-xl hover:scale-[1.02] transition-transform">
+                      Hover to scroll prototype
+                    </button>
+                  </div>
+               </div>
+               <p className="mt-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Iteration 01: Core Structure</p>
+               </div>
+               <div className="flex flex-col items-center group">
+               <div className="w-full h-65 bg-[#c1bab5] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+                  <img 
+                    src="/About.png" 
+                    alt="Final UI" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-8 left-0 right-0 px-8">
+                    <button className="w-full py-4 bg-[#EB2777] text-white text-[10px] font-black uppercase tracking-widest rounded-lg shadow-xl hover:scale-[1.02] transition-transform">
+                      Hover to scroll prototype
+                    </button>
+                  </div>
+               </div>
+               <p className="mt-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Iteration 01: Core Structure</p>
+               </div>
             </div>
-            {/* Hi-Fi Image */}
-            <div className="bg-primary/5 rounded-[2.5rem] p-4 flex flex-col items-center border border-primary/10 group">
-               <div className="w-full aspect-[4/3] bg-white rounded-[2rem] overflow-hidden shadow-lg">
-                 <img 
-                  src="https://images.unsplash.com/photo-1551288049-bbda38a594a0?auto=format&fit=crop&w=800&q=80" 
-                  alt="High Fidelity Prototype" 
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                 />
+            <div className="flex flex-col items-center group">
+               <div className="w-full h-60 bg-[#c1bab5] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80" 
+                    alt="Final UI" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-8 left-0 right-0 px-8">
+                    <button className="w-full py-4 bg-[#EB2777] text-white text-[10px] font-black uppercase tracking-widest rounded-lg shadow-xl hover:scale-[1.02] transition-transform">
+                      Hover to scroll prototype
+                    </button>
+                  </div>
                </div>
-               <p className="mt-4 text-xs font-bold text-primary uppercase tracking-widest">High-Fidelity Prototype</p>
+               <p className="mt-6 text-[10px] font-black text-primary uppercase tracking-[0.3em]">Final UI: Vibrant Digital Presence</p>
             </div>
           </div>
         </div>
 
         {/* Reflection */}
         <div className="max-w-4xl mx-auto text-center">
-           <div className="h-16 w-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-8">
-             <span className="material-symbols-outlined text-3xl">psychology</span>
+           <div className="h-12 w-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mx-auto mb-8">
+             <span className="material-symbols-outlined text-2xl">check_box</span>
            </div>
-           <h2 className="text-3xl font-serif font-black mb-8">Reflection & Learnings</h2>
+           <h2 className="text-3xl font-serif font-black mb-8">Reflection & Outcomes</h2>
            <p className="text-lg text-gray-600 leading-relaxed mb-12">
-             Redesigning for the financial sector taught me the importance of <span className="text-primary font-black">cognitive load</span> in stressful situations. Users coming to a wealth management portal are often anxious; the design must act as a calming agent, not a source of complexity. If I were to iterate again, I would conduct more A/B testing on the "Contact Advisor" form to optimize conversion rates further.
+             Designing for professional services like FKJO requires a deep understanding of <span className="text-primary font-bold">emotional intelligence in UX</span> and visual impact.My goal was to translate complex client objectives into a narrative that speaks to human first and legal experts second.
+             The success of this project is hinged on the balance of authoritative aesthetics and user-centered simplicity. By focusing on accessibility and clear call to action, we were able to create a platform that doesn't just display information but actively facilitates the attorney and client relationship.
            </p>
-           <button 
-             onClick={onBack}
-             className="text-primary font-black flex items-center gap-2 mx-auto hover:underline hover:underline-offset-8 transition-all"
-           >
-             Back to Portfolio <span className="material-symbols-outlined">arrow_forward</span>
-           </button>
+           <div className="h-[2px] w-24 bg-primary mx-auto mb-12"></div>
+           <div className="flex justify-center gap-12">
+             <button onClick={onBack} className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+               <span className="material-symbols-outlined text-sm">arrow_back</span> Previous Case
+             </button>
+             <button className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+               Next Case <span className="material-symbols-outlined text-sm">arrow_forward</span>
+             </button>
+           </div>
         </div>
       </div>
     </div>

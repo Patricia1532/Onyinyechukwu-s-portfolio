@@ -5,35 +5,39 @@ export const PROJECTS: Project[] = [
   {
     id: '1',
     title: 'Spotlyte',
-    description: 'Complete overhaul of a retail platform focusing on improving conversion rates through streamlined checkout flows.',
+    description: 'End-to-end product design of spotlyte, a next generation LED taxi advertising platform, built to redefine outdoor advertising in Lagos through smart, mobile, high-impact digital displays',
     image: '/spotlyte.png',
     tags: ['UX/UI', 'Frontend'],
+    caseStudy: false,
     link: '#',
     badge: 'Coming Soon'
   },
   {
     id: '2',
     title: 'G&C perfume store',
-    description: 'High-performance analytics dashboard featuring real-time data visualization and deep financial insights.',
+    description: 'High-performance e-commerce platform for GandC perfumes, featuring an intuitive shopping experience, rich product storytelling and conversion-optimized flows',
     image: '/perf.png',
     tags: ['Frontend', 'React'],
     link: '#',
-    badge: 'Coming Soon'
+    badge: 'Coming Soon',
+    caseStudy: false,
   },
   {
     id: '3',
     title: 'FJKO law firm',
-    description: 'Cross-platform travel planner allowing users to create itineraries and discover local hidden gems.',
+    description: 'Modern law firm website for FJKO designed to clearly communicate legal services, strengthen credibility and guide potential clients toward consultation and engagement',
     image: 'law.png',
     tags: ['UX/UI', 'Figma'],
+    caseStudy: true,
     link: 'https://fjkolaw.com'
   },
   {
     id: '4',
     title: 'Bluepulse travelAgency',
-    description: 'A clean, intuitive task management tool for remote teams featuring real-time collaboration.',
+    description: 'A modern travel agency website for blue Pulse, built with a clean frontend experience that simplifies service discovery and encourages client bookings',
     image: 'agency.png',
-    tags: ['UI', 'Frontend'],
+    tags: [ 'Frontend'],
+    caseStudy: false,
     link: 'http://bluepulsetraveltours.com'
   }
 ];

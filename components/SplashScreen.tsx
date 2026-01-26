@@ -87,9 +87,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
       </div>
 
       {/* Footer Version */}
-      <div className="absolute bottom-10 text-[10px] font-bold tracking-[0.3em] text-gray-300 uppercase">
-        V2.4.0 • 2024
-      </div>
+      
     </div>
   );
 };

@@ -1,10 +1,15 @@
 
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import { PROJECTS, CERTIFICATES, TECH_STACK } from '../constants';
 import { TabType } from '../types';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
-const PortfolioShowcase: React.FC = () => {
+interface PortfolioShowcaseProps {
+  onSelectProject?: (id: string) => void;
+}
+
+const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }) => {
   const [activeTab, setActiveTab] = useState<TabType>(TabType.PROJECTS);
   const [isAnimating, setIsAnimating] = useState(false);
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1, triggerOnce: true });
@@ -72,9 +77,12 @@ const PortfolioShowcase: React.FC = () => {
                     </div>
                     <h3 className="text-2xl font-black text-neutral-text mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
                     <p className="text-gray-500 leading-relaxed mb-6">{project.description}</p>
-                    <a href={project.link} className="inline-flex items-center gap-2 text-primary font-bold group/link">
-                      View Project <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">north_east</span>
-                    </a>
+                    <button 
+                      onClick={project.caseStudy?() => onSelectProject?.(project.id):()=>{}}
+                      className="inline-flex items-center gap-2 text-primary font-bold group/link"
+                    >
+                      View Case Study <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">north_east</span>
+                    </button>
                   </div>
                 </div>
               ))}

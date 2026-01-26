@@ -32,10 +32,10 @@ const About: React.FC = () => {
               </h2>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  As a UI Designer and Frontend Developer with a background in Mass Communication and software development, I am passionate about creating meaningful digital experiences that combine empathy, storytelling, and functionality.
+                  As a UI Designer and Frontend Developer with a background in Communication, UI design and software development, I enjoy translating ideas into well-crafted interfaces that balance visual clarity, usability and technical structure. My work sits at the intersection of strategy, design and code, ensuring that experiences are both functional and thoghtfully communicated.
                 </p>
                 <p>
-                   My non-traditional tech background allows me to approach design holistically — focusing on people, context, and impact. I believes that the best solutions are born at the intersection of human psychology and technical excellence.
+                   My non-traditional tech background allows me to design with deeper awareness of people, context and intent. i believe the best solutions are born at the intersection of communication, design and technology
                 </p>
               </div>
 

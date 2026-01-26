@@ -52,10 +52,12 @@ export default function Hero() {
               View My Work
               <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
             </button>
+            <a href="/onyii.pdf">
             <button className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-8 py-4 text-base font-bold text-gray-700 transition-all hover:bg-gray-50 hover:border-gray-300 active:scale-95">
               <span className="material-symbols-outlined text-primary">download</span>
               Download CV
             </button>
+            </a>
           </div>
 
         </div>

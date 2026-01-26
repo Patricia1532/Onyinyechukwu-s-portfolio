@@ -7,14 +7,12 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary hidden md:flex">
-              <span className="material-symbols-outlined text-xl font-bold">design_services</span>
-            </div>
+            
             <span className="text-lg font-bold text-neutral-text">Patricia Eziashi</span>
           </div>
 
           <p className="text-sm text-gray-400 font-medium">
-            &copy; {new Date().getFullYear()} Patricia Eziashi. All rights reserved. Built with ❤️ and Tailwind.
+            &copy; {new Date().getFullYear()} Patricia Eziashi. All rights reserved. Built with ❤️ and React.
           </p>
 
           <div className="flex items-center gap-6">

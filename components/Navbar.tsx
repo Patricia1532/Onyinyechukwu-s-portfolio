@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 interface NavbarProps {
   activeSection: string;
+  isProjectView?: boolean;
+  onNavigateHome?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
+const Navbar: React.FC<NavbarProps> = ({ activeSection, isProjectView, onNavigateHome }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const links = [
@@ -14,8 +16,22 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
     e.preventDefault();
+    
+    // If we are on a project detail page, we need to go back to home first
+    if (isProjectView && onNavigateHome) {
+      onNavigateHome();
+      // Use a timeout to wait for the home view to mount before scrolling
+      setTimeout(() => scrollToId(id), 50);
+    } else {
+      scrollToId(id);
+    }
+    
+    setIsMenuOpen(false);
+  };
+
+  const scrollToId = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       const offset = 64; // Navbar height
@@ -28,22 +44,21 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
         top: offsetPosition,
         behavior: 'smooth'
       });
+    } else if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    setIsMenuOpen(false);
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-100 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div 
-          className="flex items-center gap-2 group cursor-pointer" 
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setIsMenuOpen(false);
-          }}
+          className="flex items-center group cursor-pointer" 
+          onClick={(e) => handleNavigation(e as any, 'home')}
         >
-        
-          <span className="text-lg font-bold tracking-tight text-neutral-text">Patricia Eziashi</span>
+          <span className="text-lg font-bold tracking-tight text-neutral-text transition-colors group-hover:text-primary">
+            Patricia Eziashi
+          </span>
         </div>
 
         {/* Desktop Links */}
@@ -52,7 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             <a
               key={link.id}
               href={link.href}
-              onClick={(e) => scrollToSection(e, link.id)}
+              onClick={(e) => handleNavigation(e, link.id)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                 activeSection === link.id
                   ? 'bg-primary/10 text-primary'
@@ -66,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
         <div className="flex items-center gap-4">
           <button
-            onClick={(e) => scrollToSection(e as any, 'contact')}
+            onClick={(e) => handleNavigation(e as any, 'contact')}
             className="hidden md:block rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-primary/40 active:translate-y-0"
           >
             Let's Talk
@@ -89,7 +104,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             <a
               key={link.id}
               href={link.href}
-              onClick={(e) => scrollToSection(e, link.id)}
+              onClick={(e) => handleNavigation(e, link.id)}
               className={`px-4 py-3 rounded-xl text-sm font-bold transition-all ${
                 activeSection === link.id
                   ? 'bg-primary/10 text-primary'
@@ -100,7 +115,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             </a>
           ))}
           <button
-            onClick={(e) => scrollToSection(e as any, 'contact')}
+            onClick={(e) => handleNavigation(e as any, 'contact')}
             className="mt-4 block w-full text-center rounded-xl bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform"
           >
             Let's Talk
