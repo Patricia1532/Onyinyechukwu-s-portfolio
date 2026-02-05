@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     id: '3',
     title: 'FJKO law firm',
     description: 'Modern law firm website for FJKO designed to clearly communicate legal services, strengthen credibility and guide potential clients toward consultation and engagement',
-    image: 'law.png',
+    image: 'home.png',
     tags: ['UX/UI', 'Figma'],
     caseStudy: true,
     link: 'https://fjkolaw.com'
