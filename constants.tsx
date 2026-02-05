@@ -48,7 +48,7 @@ export const CERTIFICATES: Certificate[] = [
     title: 'Digital marketing course',
     issuer: '02 academy',
     year: '2025',
-    link: '#',
+    link: 'digi.png',
     icon: 'school'
   },
   {
@@ -64,7 +64,7 @@ export const CERTIFICATES: Certificate[] = [
     title: 'Complete UI/UX design, Figma',
     issuer: 'Udemy',
     year: '2024',
-    link: '#',
+    link: 'udemy.png',
     icon: 'brush'
   }
 ];

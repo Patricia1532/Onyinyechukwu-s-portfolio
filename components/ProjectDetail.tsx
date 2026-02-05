@@ -1,21 +1,64 @@
 
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ProjectDetailProps {
   projectId: string;
   onBack: () => void;
 }
 
-const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
+// const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
   // We'll focus on the Law Firm / Finance Dashboard for this detailed view
-  const isFinance = projectId === '2';
+  // const isFinance = projectId === '2';
+
+  const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
+  const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const showcaseViews = [
+    { img: 'About.png', label: 'View 01: About' },
+    { img: 'tise.png', label: 'View 02: Expertise' },
+    { img: 'ppl.png', label: 'View 03: People' },
+    { img: 'Resources.png', label: 'View 04: Resources' },
+    { img: 'Career.png', label: 'View 05: Careers' },
+    { img: 'abo.png', label: 'View 06: styling about' },
+    { img: 'exp.png', label: 'styling expertise' },
+    { img: 'res.png', label: 'View 08: styling resources' }
+  ];
+
   return (
+    <div>
+    {/* Lightbox / Modal for Enlarge Prototype */}
+      {enlargedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm transition-all duration-300 cursor-zoom-out"
+          onClick={() => setEnlargedImage(null)}
+        >
+          <button 
+            className="absolute top-8 right-8 text-white hover:text-primary transition-colors z-[110]"
+            onClick={() => setEnlargedImage(null)}
+          >
+            <span className="material-symbols-outlined text-4xl">close</span>
+          </button>
+          <div className="relative max-w-5xl w-full max-h-[90vh] flex items-center justify-center p-4">
+            <img 
+              src={enlargedImage} 
+              alt="Enlarged Prototype" 
+              className="max-w-full max-h-full rounded-2xl shadow-2xl border-4 border-white/10 animate-in zoom-in-95 duration-300 object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+        
+      )}
+     
+
+
+
+
     <div className="bg-white min-h-screen animate-in fade-in duration-700">
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-24">
         {/* Hero Section */}
@@ -224,7 +267,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         </div>
 
         {/* Hierarchy Section */}
-        <div className="mb-32">
+        {/* <div className="mb-32">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-serif font-black">Refining the Hierarchy</h2>
             <div className="flex items-center gap-4 text-[8px] font-black uppercase tracking-[0.2em] text-gray-400">
@@ -234,7 +277,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            <div className="flex flex-col items-center group">
+            <div className="flex flex-col items-center group"> */}
                {/* <div className="w-full aspect-[4/5] bg-[#f9fafb] rounded-[2.5rem] p-8 border border-gray-100 shadow-sm flex flex-col gap-4">
                  <div className="w-full h-8 bg-gray-200/50 rounded-lg"></div>
                  <div className="w-2/3 h-12 bg-gray-200/50 rounded-lg"></div>
@@ -247,7 +290,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
                    <div className="h-16 bg-gray-100 rounded-lg"></div>
                  </div>
                </div> */}
-               <div className="flex flex-col items-center group">
+               {/* <div className="flex flex-col items-center group">
                <div className="w-full h-65 bg-[#c1bab5] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
                   <img 
                     src="/Resources.png" 
@@ -309,7 +352,85 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
                <p className="mt-6 text-[10px] font-black text-primary uppercase tracking-[0.3em]">Final UI: Vibrant Digital Presence</p>
             </div>
           </div>
+        </div> */}
+
+         {/* Hierarchy Section (Refined for Four Horizontal Boxes) */}
+        {/* <div className="mb-32">
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-3xl font-serif font-black">Final Interface Showcase</h2>
+            <div className="flex items-center gap-4 text-[8px] font-black uppercase tracking-[0.2em] text-primary">
+              <span>Refined Hierarchy</span>
+              <span className="material-symbols-outlined text-xs">grid_view</span>
+              <span>Final Interface</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { img: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80', label: 'View 01: Landing' },
+              { img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80', label: 'View 02: Expertise' },
+              { img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80', label: 'View 03: Profile' },
+              { img: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80', label: 'View 04: Contact' }
+            ].map((view, i) => (
+              <div key={i} className="flex flex-col items-center group">
+                 <div className="w-full aspect-[4/5] bg-[#c1bab5] rounded-[2rem] overflow-hidden shadow-lg relative transition-all group-hover:shadow-2xl group-hover:-translate-y-2">
+                    <img 
+                      src={view.img} 
+                      alt={view.label} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                    <div className="absolute bottom-6 left-0 right-0 px-6 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                      <button className="w-full py-3 bg-[#EB2777] text-white text-[8px] font-black uppercase tracking-widest rounded shadow-xl">
+                        Enlarge Prototype
+                      </button>
+                    </div>
+                 </div>
+                 <p className="mt-6 text-[10px] font-black text-primary uppercase tracking-[0.3em]">{view.label}</p>
+              </div>
+            ))}
+          </div>
+        </div> */}
+
+
+       {/* Final Interface Showcase */}
+        <div className="mb-32">
+          <div className="flex justify-between items-center mb-12 flex-wrap gap-4">
+            <h2 className="text-3xl font-serif font-black">Final Wireframe Showcase and styling</h2>
+            <div className="flex items-center gap-4 text-[8px] font-black uppercase tracking-[0.2em] text-primary">
+              {/* <span>Refined Hierarchy</span>
+              <span className="material-symbols-outlined text-xs">grid_view</span>
+              <span>8 Optimized Views</span> */}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {showcaseViews.map((view, i) => (
+              <div key={i} className="flex flex-col items-center group animate-in fade-in slide-in-from-bottom duration-700" style={{ animationDelay: `${i * 100}ms` }}>
+                 <div className="w-full aspect-[4/5] bg-neutral-background rounded-[2.5rem] overflow-hidden shadow-lg relative transition-all group-hover:shadow-2xl group-hover:-translate-y-2 border border-gray-100">
+                    <img 
+                      src={view.img} 
+                      alt={view.label} 
+                      className="w-full h-full object-cover cursor-pointer"
+                      onClick={() => setEnlargedImage(view.img)}
+                    />
+                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                    <div className="absolute bottom-8 left-0 right-0 px-8 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
+                      <button 
+                        onClick={() => setEnlargedImage(view.img)}
+                        className="w-full py-4 bg-[#EB2777] text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-2xl hover:bg-primary transition-colors flex items-center justify-center gap-2"
+                      >
+                        Explore Wireframe
+                        <span className="material-symbols-outlined text-sm">open_in_full</span>
+                      </button>
+                    </div>
+                 </div>
+                 <p className="mt-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] group-hover:text-primary transition-colors">{view.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
+
+
+
 
         {/* Reflection */}
         <div className="max-w-4xl mx-auto text-center">
@@ -323,16 +444,17 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
            </p>
            <div className="h-[2px] w-24 bg-primary mx-auto mb-12"></div>
            <div className="flex justify-center gap-12">
-             <button onClick={onBack} className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+             {/* <button onClick={onBack} className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
                <span className="material-symbols-outlined text-sm">arrow_back</span> Previous Case
              </button>
              <button className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
                Next Case <span className="material-symbols-outlined text-sm">arrow_forward</span>
-             </button>
+             </button> */}
            </div>
         </div>
       </div>
     </div>
+     </div>
   );
 };
 
