@@ -25,9 +25,9 @@ const Contact: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-16">
             <div className="lg:w-2/5">
               <span className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Get In Touch</span>
-              <h2 className="text-5xl font-black text-neutral-text mb-8 leading-tight">
+              <h2 className="font-display text-5xl font-bold text-neutral-text mb-8 leading-tight">
                 Let's build <br />
-                <span className="gradient-text">something great</span> <br />
+                <span className="gradient-text italic">something great</span> <br />
                 together.
               </h2>
               <p className="text-lg text-gray-500 mb-12">
@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email me at</p>
-                    <p className="text-lg font-bold text-neutral-text">patriciaeziashi1@gmail.com</p>
+                    <p className="text-lg font-bold text-neutral-text">patricia.eziashi@example.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-6">
@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
                         type="text" 
                         value={form.name}
                         onChange={(e) => setForm({...form, name: e.target.value})}
-                        placeholder="patricia eziashi"
+                        placeholder="Patricia Eziashi"
                         className="w-full px-6 py-4 rounded-2xl bg-neutral-background border border-transparent focus:border-primary/30 focus:bg-white outline-none transition-all"
                       />
                     </div>
@@ -127,3 +127,4 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
+

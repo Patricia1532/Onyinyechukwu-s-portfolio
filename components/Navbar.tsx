@@ -50,28 +50,19 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, isProjectView, onNavigat
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-100 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div 
-          className="flex items-center group cursor-pointer" 
-          onClick={(e) => handleNavigation(e as any, 'home')}
-        >
-          <span className="text-lg font-bold tracking-tight text-neutral-text transition-colors group-hover:text-primary">
-            Patricia Eziashi
-          </span>
-        </div>
-
+    <nav className="fixed top-8 left-0 right-0 z-50 flex justify-center px-6 lg:px-12 pointer-events-none">
+      <div className="pointer-events-auto flex items-center justify-between w-full max-w-[1600px] bg-primary/70 backdrop-blur-xl rounded-full p-2 lg:px-10 lg:py-3 shadow-[0_20px_50px_rgba(239,57,133,0.2)] border border-white/30">
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center justify-center gap-6 lg:gap-12 px-4 flex-1">
           {links.map((link) => (
             <a
               key={link.id}
               href={link.href}
               onClick={(e) => handleNavigation(e, link.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+              className={`px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-[0.15em] transition-all duration-300 whitespace-nowrap ${
                 activeSection === link.id
-                  ? 'bg-primary/10 text-primary'
-                  : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                  ? 'bg-white text-primary shadow-sm'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
               {link.name}
@@ -79,51 +70,46 @@ const Navbar: React.FC<NavbarProps> = ({ activeSection, isProjectView, onNavigat
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={(e) => handleNavigation(e as any, 'contact')}
-            className="hidden md:block rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-primary/40 active:translate-y-0"
-          >
-            Let's Talk
-          </button>
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex md:hidden h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
-          >
-            <span className="material-symbols-outlined">
-              {isMenuOpen ? 'close' : 'menu'}
-            </span>
-          </button>
-        </div>
+        {/* Mobile Menu Toggle */}
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="flex md:hidden h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10 transition-colors"
+        >
+          <span className="material-symbols-outlined">
+            {isMenuOpen ? 'close' : 'menu'}
+          </span>
+        </button>
+
+        {/* CTA / Email Button */}
+        <button
+          onClick={(e) => handleNavigation(e as any, 'contact')}
+          className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white text-primary flex items-center justify-center transition-all hover:bg-neutral-background hover:scale-105 active:scale-95 shadow-sm shrink-0"
+          title="Contact Me"
+        >
+          <span className="material-symbols-outlined text-xl lg:text-2xl">mail</span>
+        </button>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`md:hidden absolute top-16 left-0 right-0 bg-white border-b border-gray-100 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-[32rem] py-4 opacity-100 shadow-xl' : 'max-h-0 py-0 opacity-0'}`}>
+      {/* Mobile Menu Overlay */}
+      <div className={`md:hidden absolute top-20 left-6 right-6 bg-primary/95 backdrop-blur-2xl rounded-[2rem] border border-white/20 transition-all duration-500 overflow-hidden shadow-2xl pointer-events-auto ${isMenuOpen ? 'max-h-[32rem] py-6 opacity-100' : 'max-h-0 py-0 opacity-0'}`}>
         <div className="flex flex-col px-6 gap-2">
           {links.map((link) => (
             <a
               key={link.id}
               href={link.href}
               onClick={(e) => handleNavigation(e, link.id)}
-              className={`px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+              className={`px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all ${
                 activeSection === link.id
-                  ? 'bg-primary/10 text-primary'
-                  : 'text-gray-600 hover:bg-gray-50'
+                  ? 'bg-white text-primary'
+                  : 'text-white/70 hover:bg-white/10'
               }`}
             >
               {link.name}
             </a>
           ))}
-          <button
-            onClick={(e) => handleNavigation(e as any, 'contact')}
-            className="mt-4 block w-full text-center rounded-xl bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform"
-          >
-            Let's Talk
-          </button>
         </div>
       </div>
     </nav>
   );
 };
-
 export default Navbar;

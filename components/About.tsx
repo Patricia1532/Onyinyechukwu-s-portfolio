@@ -9,14 +9,14 @@ const About: React.FC = () => {
     { icon: 'auto_stories', label: 'Reading books', desc: 'Growth, creativity, storytelling' },
     { icon: 'directions_walk', label: 'Long walks', desc: 'Reflection and inspiration' },
     { icon: 'headset', label: 'Listening to music', desc: 'Curated vibes for focus' },
-    { icon: 'edit_note', label: 'Writing & Journaling', desc: 'Documenting the journey' },
+    { icon: 'edit_note', label: 'Writing & Journaling', desc: 'Documenting the journey' }
   ];
 
   const photos = [
-    '/book.png',
-    '/walks.png',
-    '/music.png',
-    '/journal.jpg',
+    'book.png',
+    'walks.png',
+    'music.png',
+    'journal.jpg',
   ];
 
   return (
@@ -26,21 +26,21 @@ const About: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="lg:w-1/2">
               <span className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">About Patricia</span>
-              <h2 className="text-4xl lg:text-5xl font-black text-neutral-text mb-8 leading-tight">
-                Design with empathy, <br />
-                <span className="text-primary/60">code with purpose.</span>
+              <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-text mb-8 leading-tight">
+                Designing with intention, <br />
+                <span className="text-primary/60 italic">Building with Clarity.</span>
               </h2>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  As a UI Designer and Frontend Developer with a background in Communication, UI design and software development, I enjoy translating ideas into well-crafted interfaces that balance visual clarity, usability and technical structure. My work sits at the intersection of strategy, design and code, ensuring that experiences are both functional and thoghtfully communicated.
+                  As a UX/UI Designer and Frontend Developer with a background in Communication, UI design and software development, I enjoy translating ideas into well-crafted interfaces that balance visual clarity, usability and technical structure. My work sits at the intersection of strategy, design and code, ensuring that experiences are both functional and thoghtfully communicated.
                 </p>
                 <p>
-                   My non-traditional tech background allows me to design with deeper awareness of people, context and intent. i believe the best solutions are born at the intersection of communication, design and technology
+                  My non-traditional tech background allows me to design with deeper awareness of people, context and intent. i believe the best solutions are born at the intersection of communication, design and technology
                 </p>
               </div>
 
               <div className="mt-12">
-                <h3 className="text-xl font-bold text-neutral-text mb-6">Aside from my passion for design...</h3>
+                <h3 className="font-display text-2xl font-bold text-neutral-text mb-6">Aside from my passion for design, i enjoy...</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {interests.map((item, idx) => (
                     <div 

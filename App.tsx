@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SplashScreen from './components/SplashScreen';
 import ProjectDetail from './components/ProjectDetail';
+import SparkleCursor from './components/SparkleCursor';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -58,6 +59,7 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <SparkleCursor/>
       {showSplash && <SplashScreen onFinish={handleSplashFinish} />}
       
       <div className={`transition-opacity duration-1000 ${showSplash ? 'opacity-0' : 'opacity-100'}`}>

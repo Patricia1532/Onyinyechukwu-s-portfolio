@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
     image: 'home.png',
     tags: ['UX/UI', 'Figma'],
     caseStudy: true,
-    link: 'https://fjkolaw.com'
+    link: '#'
   },
   {
     id: '4',
@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     description: 'A modern travel agency website for blue Pulse, built with a clean frontend experience that simplifies service discovery and encourages client bookings',
     image: 'agency.png',
     tags: [ 'Frontend'],
-    caseStudy: false,
+    caseStudy: true,
     link: 'http://bluepulsetraveltours.com'
   }
 ];

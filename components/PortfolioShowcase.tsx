@@ -77,12 +77,14 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
                     </div>
                     <h3 className="text-2xl font-black text-neutral-text mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
                     <p className="text-gray-500 leading-relaxed mb-6">{project.description}</p>
-                    <button 
+                    <a href={project.link}>
+                      <button 
                       onClick={project.caseStudy?() => onSelectProject?.(project.id):()=>{}}
                       className="inline-flex items-center gap-2 text-primary font-bold group/link"
                     >
                       View Case Study <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">north_east</span>
                     </button>
+                    </a>
                   </div>
                 </div>
               ))}
