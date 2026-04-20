@@ -18,9 +18,10 @@ export const PROJECTS: Project[] = [
     description: 'High-performance e-commerce platform for GandC perfumes, featuring an intuitive shopping experience, rich product storytelling and conversion-optimized flows',
     image: '/perf.png',
     tags: ['Frontend', 'React'],
-    link: '#',
-    badge: 'Coming Soon',
+    link: 'https://github.com/Patricia1532/GandC.git',
+    badge: '',
     caseStudy: false,
+   
   },
   {
     id: '3',
@@ -39,6 +40,7 @@ export const PROJECTS: Project[] = [
     tags: [ 'Frontend'],
     caseStudy: true,
     link: 'http://bluepulsetraveltours.com'
+   
   }
 ];
 
