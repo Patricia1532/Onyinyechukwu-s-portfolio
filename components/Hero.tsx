@@ -79,7 +79,7 @@ export default function Hero() {
                 >
                   <span className="material-symbols-outlined transition-transform group-hover:translate-y-1">arrow_downward</span>
                 </button>
-                <a href="/OOnyi.pdf">
+                <a href="/cv.pdf">
                 <button 
                   className="px-8 py-4 bg-primary text-white rounded-full text-sm font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all transform hover:-translate-y-1 active:scale-95"
                 >
