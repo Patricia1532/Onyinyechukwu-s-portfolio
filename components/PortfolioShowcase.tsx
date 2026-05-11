@@ -1,9 +1,9 @@
 
-
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { PROJECTS, CERTIFICATES, TECH_STACK } from '../constants';
 import { TabType } from '../types';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface PortfolioShowcaseProps {
   onSelectProject?: (id: string) => void;
@@ -13,6 +13,7 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
   const [activeTab, setActiveTab] = useState<TabType>(TabType.PROJECTS);
   const [isAnimating, setIsAnimating] = useState(false);
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1, triggerOnce: true });
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const tabs = Object.values(TabType);
 
@@ -25,12 +26,20 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
     }, 200);
   };
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section ref={ref} className="py-24 bg-white">
+    <section ref={ref} id="portfolio" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <span className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Selected Works</span>
-          <h2 className="text-4xl lg:text-5xl font-black text-neutral-text">Portfolio Showcase</h2>
+          <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-text">Portfolio Showcase</h2>
         </div>
 
         {/* Tab Navigation */}
@@ -46,7 +55,10 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
               >
                 {tab}
                 {activeTab === tab && (
-                  <div className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-lg shadow-primary/30 animate-in fade-in zoom-in-95 duration-200"></div>
+                  <motion.div 
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-lg shadow-primary/30"
+                  />
                 )}
               </button>
             ))}
@@ -58,7 +70,17 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
           {activeTab === TabType.PROJECTS && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
               {PROJECTS.map((project) => (
-                <div key={project.id} className="group relative bg-neutral-background rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10">
+                <div 
+                  key={project.id} 
+                  onClick={() => {
+                    if (project.link && project.link !== '#') {
+                      window.open(project.link, '_blank', 'noopener,noreferrer');
+                    } else {
+                      onSelectProject?.(project.id);
+                    }
+                  }}
+                  className="group relative bg-neutral-background rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
+                >
                   <div className="aspect-[16/10] overflow-hidden relative">
                     <img src={project.image} alt={project.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     {project.badge && (
@@ -75,16 +97,21 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
                         <span key={tag} className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full">{tag}</span>
                       ))}
                     </div>
-                    <h3 className="text-2xl font-black text-neutral-text mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+                    <h3 className="font-display text-2xl font-bold text-neutral-text mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
                     <p className="text-gray-500 leading-relaxed mb-6">{project.description}</p>
-                    <a href={project.link}>
-                      <button 
-                      onClick={project.caseStudy?() => onSelectProject?.(project.id):()=>{}}
+                    <button 
+                      onClick={() => {
+                        if (project.link && project.link !== '#') {
+                          window.open(project.link, '_blank', 'noopener,noreferrer');
+                        } else {
+                          onSelectProject?.(project.id);
+                        }
+                      }}
                       className="inline-flex items-center gap-2 text-primary font-bold group/link"
                     >
-                      View Case Study <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">north_east</span>
+                      {project.link && project.link !== '#' ? 'View Website' : 'View Case Study'} 
+                      <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">north_east</span>
                     </button>
-                    </a>
                   </div>
                 </div>
               ))}
@@ -98,7 +125,7 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
                   <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-white text-primary mb-6 shadow-sm group-hover:bg-primary group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined text-3xl">{cert.icon}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-neutral-text mb-2">{cert.title}</h3>
+                  <h3 className="font-display text-xl font-bold text-neutral-text mb-2">{cert.title}</h3>
                   <p className="text-gray-500 font-medium mb-1">{cert.issuer}</p>
                   <p className="text-sm text-gray-400 mb-6">{cert.year}</p>
                   <a href={cert.link} className="text-sm font-bold text-primary hover:underline underline-offset-4">View Certificate</a>

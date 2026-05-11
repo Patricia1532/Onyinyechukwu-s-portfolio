@@ -3,44 +3,37 @@ import { Project, Certificate, TechItem } from './types';
 
 export const PROJECTS: Project[] = [
   {
-    id: '1',
+    id: 'spotlight',
     title: 'Spotlyte',
-    description: 'End-to-end product design of spotlyte, a next generation LED taxi advertising platform, built to redefine outdoor advertising in Lagos through smart, mobile, high-impact digital displays',
+    description: 'End-to-end product design of spotlyte, a next generation LED taxi advertising platform, built to redefine outdoor advertising in Lagos through smart, mobile, high-impact digital displays.',
     image: '/spotlyte.png',
-    tags: ['UX/UI', 'Frontend'],
-    caseStudy: false,
+    tags: ['UX/UI', 'Figma'],
     link: '#',
     badge: 'Coming Soon'
   },
   {
-    id: '2',
-    title: 'G&C perfume store',
-    description: 'High-performance e-commerce platform for GandC perfumes, featuring an intuitive shopping experience, rich product storytelling and conversion-optimized flows',
+    id: 'gnc-perfume',
+    title: 'G\u00A0&\u00A0C Perfume Store',
+    description: 'A personal e-commerce project focused on building a clean, responsive, and visually engaging shopping experience.',
     image: '/perf.png',
     tags: ['Frontend', 'React'],
-    link: 'https://github.com/Patricia1532/GandC.git',
-    badge: '',
-    caseStudy: false,
-   
-  },
-  {
-    id: '3',
-    title: 'FJKO law firm',
-    description: 'Modern law firm website for FJKO designed to clearly communicate legal services, strengthen credibility and guide potential clients toward consultation and engagement',
-    image: 'home.png',
-    tags: ['UX/UI', 'Figma'],
-    caseStudy: true,
     link: '#'
   },
   {
-    id: '4',
-    title: 'Bluepulse travelAgency',
+    id: 'fjko-law',
+    title: 'FJKO Law Firm',
+    description: 'Modern law firm website for FJKO designed to clearly communicate legal services, strengthen credibility and guide potential clients toward consultation and engagement',
+    image: '/firm.png',
+    tags: ['UX/UI', 'Figma'],
+    link: '#'
+  },
+  {
+    id: 'bluepulse-travel',
+    title: 'BluePulse Travel Agency',
     description: 'A modern travel agency website for blue Pulse, built with a clean frontend experience that simplifies service discovery and encourages client bookings',
-    image: 'agency.png',
-    tags: [ 'Frontend'],
-    caseStudy: true,
+    image: '/agency.png',
+    tags: ['UX/UI', 'Web Design'],
     link: 'http://bluepulsetraveltours.com'
-   
   }
 ];
 
@@ -82,3 +75,4 @@ export const TECH_STACK: TechItem[] = [
   { name: 'Material UI', icon: 'widgets', color: 'text-blue-500' },
   { name: 'Vite', icon: 'bolt', color: 'text-yellow-400' }
 ];
+

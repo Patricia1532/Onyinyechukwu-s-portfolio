@@ -7,7 +7,6 @@ export interface Project {
   tags: string[];
   link: string;
   badge?: string;
-  caseStudy: boolean;
 }
 
 export interface Certificate {
