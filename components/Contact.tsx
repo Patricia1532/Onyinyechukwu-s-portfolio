@@ -10,115 +10,126 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    // Simulate API call
     setTimeout(() => {
       setStatus('success');
       setForm({ name: '', email: '', message: '' });
       setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+    }, 1200);
   };
 
   return (
-    <section ref={ref} className="py-24 bg-neutral-background">
-      <div className="max-w-7xl mx-auto px-6">
+    <section ref={ref} id="contact" className="py-24 sm:py-32 bg-creme-light/80 border-t border-creme relative">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <div className="flex flex-col lg:flex-row gap-16">
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            
+            {/* Left Info Column */}
             <div className="lg:w-2/5">
-              <span className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Get In Touch</span>
-              <h2 className="font-display text-5xl font-bold text-neutral-text mb-8 leading-tight">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sand/30 border border-sand/50 text-burgundy text-xs font-bold uppercase tracking-widest mb-4">
+                <span>03</span>
+                <span>•</span>
+                <span>Get In Touch</span>
+              </div>
+
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-burgundy mb-6 leading-tight">
                 Let's build <br />
-                <span className="gradient-text italic">something great</span> <br />
+                <span className="font-editorial italic font-normal text-dustyPink-dark">something timeless</span> <br />
                 together.
               </h2>
-              <p className="text-lg text-gray-500 mb-12">
-                Have a project in mind or just want to chat? I'm currently available for freelance work and new opportunities.
+              <p className="text-base sm:text-lg text-neutral-muted mb-10 leading-relaxed font-sans">
+                Have an exciting project, a role, or simply want to talk design systems, typography, or frontend craft? My inbox is always open.
               </p>
               
-              <div className="space-y-8">
-                <div className="flex items-center gap-6">
-                  <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-white text-primary shadow-sm border border-gray-100">
-                    <span className="material-symbols-outlined">mail</span>
+              <div className="space-y-6">
+                <div className="flex items-center gap-5 p-4 rounded-2xl bg-white/90 border border-creme shadow-sm">
+                  <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-creme text-burgundy shadow-inner shrink-0">
+                    <span className="material-symbols-outlined text-2xl">mail</span>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email me at</p>
-                    <p className="text-lg font-bold text-neutral-text">patriciaeziashi1@gmail.com</p>
+                    <p className="text-[11px] font-bold text-sand-dark uppercase tracking-widest">Email Patricia</p>
+                    <a href="mailto:patricia.eziashi@example.com" className="text-sm sm:text-base font-bold text-burgundy hover:underline">
+                      patricia.eziashi@example.com
+                    </a>
                   </div>
                 </div>
-                <div className="flex items-center gap-6">
-                  <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-white text-primary shadow-sm border border-gray-100">
-                    <span className="material-symbols-outlined">location_on</span>
+
+                <div className="flex items-center gap-5 p-4 rounded-2xl bg-white/90 border border-creme shadow-sm">
+                  <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-creme text-burgundy shadow-inner shrink-0">
+                    <span className="material-symbols-outlined text-2xl">location_on</span>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Based in</p>
-                    <p className="text-lg font-bold text-neutral-text">Lagos, Nigeria (Remote Friendly)</p>
+                    <p className="text-[11px] font-bold text-sand-dark uppercase tracking-widest">Location</p>
+                    <p className="text-sm sm:text-base font-bold text-burgundy">Lagos, Nigeria (Worldwide Remote)</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="lg:w-3/5">
-              <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl shadow-primary/5 border border-gray-100">
+            {/* Right Contact Form */}
+            <div className="lg:w-3/5 w-full">
+              <div className="bg-white p-8 sm:p-12 rounded-3xl sm:rounded-[2.5rem] shadow-2xl shadow-burgundy/5 border border-creme">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-gray-600 ml-1">Your Name</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-burgundy ml-1">Your Name</label>
                       <input 
                         required
                         type="text" 
                         value={form.name}
                         onChange={(e) => setForm({...form, name: e.target.value})}
-                        placeholder="Patricia Eziashi"
-                        className="w-full px-6 py-4 rounded-2xl bg-neutral-background border border-transparent focus:border-primary/30 focus:bg-white outline-none transition-all"
+                        placeholder="e.g. Alex Morgan"
+                        className="w-full px-5 py-4 rounded-2xl bg-creme-light/60 border border-creme focus:border-burgundy/40 focus:bg-white text-burgundy outline-none transition-all placeholder:text-neutral-muted/50 text-sm font-medium"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-gray-600 ml-1">Your Email</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-burgundy ml-1">Your Email</label>
                       <input 
                         required
                         type="email" 
                         value={form.email}
                         onChange={(e) => setForm({...form, email: e.target.value})}
-                        placeholder="patricia@example.com"
-                        className="w-full px-6 py-4 rounded-2xl bg-neutral-background border border-transparent focus:border-primary/30 focus:bg-white outline-none transition-all"
+                        placeholder="alex@example.com"
+                        className="w-full px-5 py-4 rounded-2xl bg-creme-light/60 border border-creme focus:border-burgundy/40 focus:bg-white text-burgundy outline-none transition-all placeholder:text-neutral-muted/50 text-sm font-medium"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-600 ml-1">Your Message</label>
+                    <label className="text-xs font-bold uppercase tracking-wider text-burgundy ml-1">Your Message</label>
                     <textarea 
                       required
                       rows={5}
                       value={form.message}
                       onChange={(e) => setForm({...form, message: e.target.value})}
-                      placeholder="Tell me about your project..."
-                      className="w-full px-6 py-4 rounded-2xl bg-neutral-background border border-transparent focus:border-primary/30 focus:bg-white outline-none transition-all resize-none"
+                      placeholder="Tell me a bit about your idea, timeline, or what you'd like to collaborate on..."
+                      className="w-full px-5 py-4 rounded-2xl bg-creme-light/60 border border-creme focus:border-burgundy/40 focus:bg-white text-burgundy outline-none transition-all resize-none placeholder:text-neutral-muted/50 text-sm font-medium"
                     />
                   </div>
                   <button 
                     disabled={status === 'loading'}
-                    className={`w-full py-5 rounded-2xl font-black text-white shadow-xl shadow-primary/20 transition-all active:scale-95 flex items-center justify-center gap-3 ${
-                      status === 'success' ? 'bg-green-500 shadow-green-500/20' : 'bg-primary hover:-translate-y-1 hover:shadow-primary/30'
+                    className={`w-full py-4 sm:py-5 rounded-2xl font-bold uppercase tracking-widest text-xs sm:text-sm text-creme shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3 ${
+                      status === 'success' ? 'bg-emerald-700 shadow-emerald-700/20' : 'bg-burgundy hover:bg-burgundy-light shadow-burgundy/20'
                     }`}
                   >
                     {status === 'idle' && (
                       <>
-                        Send Message
-                        <span className="material-symbols-outlined">send</span>
+                        <span>Send Message</span>
+                        <span className="material-symbols-outlined text-lg">arrow_forward</span>
                       </>
                     )}
                     {status === 'loading' && (
-                      <div className="h-6 w-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <div className="h-5 w-5 border-2 border-creme/30 border-t-creme rounded-full animate-spin" />
                     )}
                     {status === 'success' && (
                       <>
-                        Sent Successfully!
-                        <span className="material-symbols-outlined">check_circle</span>
+                        <span>Message Sent Successfully!</span>
+                        <span className="material-symbols-outlined text-lg">check_circle</span>
                       </>
                     )}
                   </button>
                 </form>
               </div>
             </div>
+
           </div>
         </div>
       </div>

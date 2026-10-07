@@ -1,17 +1,17 @@
- import React, { useEffect, useState } from 'react';
+ 
 
-export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
+import React from 'react';
+import { motion } from 'framer-motion';
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+interface HeroProps {
+  onNavigateAbout?: () => void;
+}
 
-  const scrollToProjects = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const element = document.getElementById('projects');
+export default function Hero({ onNavigateAbout }: HeroProps = {}) {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
     if (element) {
-      const offset = 64;
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -25,81 +25,216 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col lg:flex-row overflow-hidden bg-neutral-background pt-32 lg:pt-20">
-      {/* Left Side: Image Section */}
-      <div className="relative w-full lg:w-1/2 h-[60vh] lg:h-screen p-4 lg:p-8">
-        <div className={`relative h-full w-full rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-1000 transform ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
-          <img
-            src="professional.png"
-            alt="Patricia Eziashi"
-            className="h-full w-full object-cover"
-          />
+    <section 
+      id="hero-section"
+      className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#EAF5FB] pt-20 sm:pt-24 pb-8 px-4 sm:px-8 lg:px-12 select-none"
+      style={{
+        backgroundImage: `
+          radial-gradient(ellipse at 50% 35%, #F4FAFD 0%, #E3F2FB 50%, #CDE9F8 100%)
+        `,
+      }}
+    >
+      {/* Subtle organic vintage paper grain texture */}
+      <div className="absolute inset-0 bg-vintage-grain opacity-10 pointer-events-none" />
+
+      {/* Main Content Area: Staged to match IMG_6734.jpg composition */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center justify-center flex-grow pt-4 sm:pt-8 md:pt-10">
+        
+        {/* ========================================================================= */}
+        {/* GIANT EDITORIAL HEADLINE: "HI, I'm PATRICIA" (or SARAH)                   */}
+        {/* High contrast Roman serif capitals paired with slanted script italic     */}
+        {/* ========================================================================= */}
+        <div className="w-full text-center relative z-0 mb-[-30px] sm:mb-[-50px] md:mb-[-70px] lg:mb-[-90px] xl:mb-[-110px]">
+          <motion.h1 
+            initial={{ opacity: 0, y: -25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-baseline justify-center tracking-tight text-[#650000] leading-none"
+            style={{
+              textShadow: '0 2px 20px rgba(101, 0, 0, 0.04)'
+            }}
+          >
+            {/* "HI," in high-contrast Roman serif caps */}
+            <span className="font-bodoni font-normal text-5xl sm:text-7xl md:text-8xl lg:text-[10.5rem] xl:text-[12.5rem] tracking-tight mr-2 sm:mr-4 md:mr-6 lg:mr-8">
+              HI,
+            </span>
+
+            {/* "I'm" in elegant slanted italic serif with graceful curves */}
+            <span className="font-editorial italic font-normal text-4xl sm:text-6xl md:text-7xl lg:text-[9.5rem] xl:text-[11.5rem] tracking-normal mr-2 sm:mr-4 md:mr-6 lg:mr-8">
+              I'm
+            </span>
+
+            {/* "PATRICIA" in tall, grand serif all-caps */}
+            <span className="font-bodoni font-normal text-5xl sm:text-7xl md:text-8xl lg:text-[10.5rem] xl:text-[12.5rem] tracking-tight">
+              PATRICIA
+            </span>
+          </motion.h1>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* CENTER STAGE: Portrait Model + Doodle Handwritten Annotations & Arrows    */}
+        {/* ========================================================================= */}
+        <div className="relative w-full max-w-5xl mx-auto flex items-center justify-center min-h-[460px] sm:min-h-[520px] md:min-h-[580px] lg:min-h-[640px]">
           
-          {/* Circular Badge Overlay */}
-          <div className="absolute top-6 left-6 lg:top-10 lg:left-10 w-24 h-24 lg:w-32 lg:h-32 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center p-2 shadow-lg animate-[spin_10s_linear_infinite]">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
+          {/* ======================================================================= */}
+          {/* DOODLE ANNOTATION 1 (Left Top): PRODUCT DESIGNER                        */}
+          {/* ======================================================================= */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="absolute top-16 sm:top-24 md:top-28 left-4 sm:left-10 md:left-16 lg:left-24 z-30 flex items-center gap-2 sm:gap-3"
+          >
+            <div className="flex flex-col text-right">
+              <span className="font-sans font-medium text-[11px] sm:text-xs md:text-sm tracking-[0.18em] text-[#650000] uppercase leading-snug">
+                PRODUCT
+              </span>
+              <span className="font-sans font-medium text-[11px] sm:text-xs md:text-sm tracking-[0.18em] text-[#650000] uppercase leading-snug">
+                DESIGNER
+              </span>
+            </div>
+
+            {/* Hand-drawn curved doodle arrow pointing down-right toward shoulder/head */}
+            <svg 
+              className="w-10 h-8 sm:w-14 sm:h-10 md:w-16 md:h-12 text-[#650000] transform translate-y-2" 
+              viewBox="0 0 60 40" 
+              fill="none"
+            >
               <path
-                id="circlePath"
-                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                fill="none"
+                d="M 5 8 C 20 8 42 12 48 30"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
               />
-              <text className="text-[10px] font-bold uppercase tracking-[0.2em] fill-primary">
-                <textPath xlinkHref="#circlePath">
-                  Patricia Eziashi — UI/UX Designer — 
-                </textPath>
-              </text>
+              <path
+                d="M 38 25 L 48 30 L 49 19"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="material-symbols-outlined text-primary text-2xl lg:text-3xl">auto_awesome</span>
-            </div>
-          </div>
-        </div>
-      </div>
+          </motion.div>
 
-      {/* Right Side: Content Section */}
-      <div className={`relative w-full lg:w-1/2 min-h-[40vh] lg:h-screen bg-neutral-background flex flex-col justify-center px-8 lg:px-20 py-12 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl text-neutral-text mb-2 lg:mb-4">
-            Hey I'm Patricia,
-          </h2>
-          <h1 className="font-display text-[6rem] sm:text-[10rem] lg:text-[16rem] font-medium leading-[0.8] text-neutral-text mb-4 tracking-tighter lg:-ml-12">
-            UX/UI
-          </h1>
-          <p className="font-display text-2xl sm:text-3xl lg:text-5xl text-primary mb-12 lg:mb-20 lg:-ml-12">
-            Designer and Front-end developer
-          </p>
+          {/* ======================================================================= */}
+          {/* DOODLE ANNOTATION 2 (Left Bottom): ASKING "WHAT IF" A LOT                */}
+          {/* ======================================================================= */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-2 sm:left-8 md:left-12 lg:left-20 z-30 flex items-center gap-2 sm:gap-3"
+          >
+            <div className="flex flex-col text-left sm:text-right">
+              <span className="font-sans font-medium text-[11px] sm:text-xs md:text-sm tracking-[0.16em] text-[#650000] uppercase leading-snug">
+                ASKING "WHAT IF"
+              </span>
+              <span className="font-sans font-medium text-[11px] sm:text-xs md:text-sm tracking-[0.16em] text-[#650000] uppercase leading-snug">
+                A LOT
+              </span>
+            </div>
+
+            {/* Hand-drawn curved doodle arrow pointing right towards iced coffee/drink */}
+            <svg 
+              className="w-10 h-6 sm:w-14 sm:h-8 md:w-16 md:h-8 text-[#650000] transform -translate-y-1" 
+              viewBox="0 0 60 30" 
+              fill="none"
+            >
+              <path
+                d="M 5 22 C 22 24 38 18 48 10"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
+              <path
+                d="M 38 7 L 48 10 L 42 19"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.div>
+
+          {/* ======================================================================= */}
+          {/* CENTERPIECE PORTRAIT (Matching the glasses, striped cardigan, drink)   */}
+          {/* ======================================================================= */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-20 flex flex-col items-center justify-end"
+          >
+            <div className="relative w-64 sm:w-80 md:w-[380px] lg:w-[440px] aspect-[3/4] max-h-[580px] overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] group shadow-xl shadow-[#650000]/10 border-2 border-white/80">
+              {/* High-res model image with glasses, stylish cardigan, iced latte and warm lighting */}
+              <img
+                src="hts.png"
+                alt="Patricia Eziashi / Creator"
+                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-102"
+              />
+            </div>
+          </motion.div>
+
+          {/* ======================================================================= */}
+          {/* DOODLE ANNOTATION 3 (Right Middle): FRONT-END DEVELOPER                 */}
+          {/* ======================================================================= */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="absolute top-1/2 -translate-y-6 sm:-translate-y-4 right-2 sm:right-8 md:right-12 lg:right-20 z-30 flex items-center gap-2 sm:gap-3"
+          >
+            {/* Hand-drawn curved doodle arrow pointing down-left towards creator */}
+            <svg 
+              className="w-10 h-8 sm:w-14 sm:h-10 md:w-16 md:h-12 text-[#650000] transform -translate-y-1" 
+              viewBox="0 0 60 40" 
+              fill="none"
+            >
+              <path
+                d="M 52 28 C 40 12 25 10 10 18"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
+              <path
+                d="M 12 8 L 10 18 L 22 21"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+            <div className="flex flex-col text-left">
+              <span className="font-sans font-medium text-[11px] sm:text-xs md:text-sm tracking-[0.18em] text-[#650000] uppercase leading-snug">
+                FRONT-END
+              </span>
+              <span className="font-sans font-medium text-[11px] sm:text-xs md:text-sm tracking-[0.18em] text-[#650000] uppercase leading-snug">
+                DEVELOPER
+              </span>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* Interactive Quick Navigation controls */}
+        <div className="relative z-30 flex flex-wrap items-center justify-center gap-3 mt-4 sm:mt-6">
+          <button
+            onClick={() => scrollToSection('process')}
+            className="px-6 py-2.5 rounded-full bg-[#650000] hover:bg-[#8C1227] text-white text-xs font-semibold tracking-wider uppercase shadow-md hover:shadow-lg transition-all flex items-center gap-1.5"
+          >
+            <span>My Process & Work</span>
+            <span className="text-sm">↓</span>
+          </button>
           
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="flex flex-col gap-6 max-w-xs mx-auto lg:mx-0">
-              <div className="flex items-center justify-center lg:justify-start gap-6">
-                <button
-                  onClick={scrollToProjects}
-                  className="w-14 h-14 rounded-full border border-neutral-text/20 flex items-center justify-center text-neutral-text transition-all hover:border-primary hover:bg-primary hover:text-white group"
-                  title="Explore Projects"
-                >
-                  <span className="material-symbols-outlined transition-transform group-hover:translate-y-1">arrow_downward</span>
-                </button>
-                <a href="/cv.pdf">
-                <button 
-                  className="px-8 py-4 bg-primary text-white rounded-full text-sm font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:bg-primary-dark transition-all transform hover:-translate-y-1 active:scale-95"
-                >
-                 
-                  Download CV
-                </button>
-                </a>
-              </div>
-            </div>
-          </div>
+          <button
+            onClick={() => onNavigateAbout ? onNavigateAbout() : scrollToSection('about')}
+            className="px-5 py-2.5 rounded-full bg-white/80 hover:bg-white text-[#650000] text-xs font-semibold tracking-wider uppercase shadow-sm border border-[#89CFF0]/40 transition-all hover:shadow"
+          >
+            About Patricia
+          </button>
         </div>
 
-        {/* Bottom Metadata */}
-        <div className="absolute bottom-8 left-8 lg:left-20 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-12 text-xs font-bold uppercase tracking-widest text-neutral-text/40">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            Let's Work Together
-          </div>
-          <div>Lagos, NIGERIA — 2026</div>
-        </div>
       </div>
     </section>
   );

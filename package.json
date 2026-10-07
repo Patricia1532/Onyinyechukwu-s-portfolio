@@ -1,3 +1,4 @@
+
 {
   "name": "patricia-eziashi-portfolio",
   "private": true,
@@ -6,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
@@ -20,3 +22,4 @@
     "vite": "^6.2.0"
   }
 }
+

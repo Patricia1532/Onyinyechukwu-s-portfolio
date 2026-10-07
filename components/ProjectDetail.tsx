@@ -1,7 +1,8 @@
 
 import React, { useEffect, useState, useRef } from 'react';
-import { CASE_STUDIES } from '../components/data/caseStudies';
+import { CASE_STUDIES } from '../data/caseStudies';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SpotlyteDetail } from './SpotlyteDetail';
 
 interface ProjectDetailProps {
   projectId: string;
@@ -10,6 +11,11 @@ interface ProjectDetailProps {
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
   const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
+
+  if (projectId === 'spotlyte' || projectId === 'spotlight') {
+    return <SpotlyteDetail onBack={onBack} />;
+  }
+
   if (projectId === 'fjko-law') {
     const showcaseViews = [
       { img: 'About.png', label: 'View 01: About' },

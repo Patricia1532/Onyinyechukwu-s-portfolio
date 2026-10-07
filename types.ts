@@ -1,4 +1,5 @@
 
+
 export interface Project {
   id: string;
   title: string;
@@ -20,8 +21,11 @@ export interface Certificate {
 
 export interface TechItem {
   name: string;
-  icon: string;
-  color: string;
+  fullName?: string;
+  tags?: string;
+  icon?: string;
+  iconType?: string;
+  color?: string;
 }
 
 export enum TabType {

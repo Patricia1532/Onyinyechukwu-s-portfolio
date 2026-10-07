@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -15,12 +16,13 @@ const SparkleCursor: React.FC = () => {
 
   const addSparkle = useCallback((x: number, y: number) => {
     const id = Date.now() + Math.random();
+    const colors = ['#650000', '#89CFF0', '#E5BACB', '#8C1227', '#4AAFD9'];
     const newSparkle: Sparkle = {
       id,
       x,
       y,
-      size: Math.random() * 20 + 10, // Size between 10 and 30
-      color: '#ef3985', // Using the primary pink color
+      size: Math.random() * 16 + 8, // Size between 8 and 24
+      color: colors[Math.floor(Math.random() * colors.length)],
       rotation: Math.random() * 360,
     };
 

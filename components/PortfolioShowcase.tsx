@@ -1,9 +1,10 @@
 
 import React, { useState, useRef } from 'react';
-import { PROJECTS, CERTIFICATES, TECH_STACK } from '../constants';
+import { PROJECTS, CERTIFICATES } from '../constants';
 import { TabType } from '../types';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import TechStackGrid from './TechStackGrid';
 
 interface PortfolioShowcaseProps {
   onSelectProject?: (id: string) => void;
@@ -26,38 +27,36 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
     }, 200);
   };
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section ref={ref} id="portfolio" className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section ref={ref} id="projects" className="py-24 sm:py-32 bg-white overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        {/* Section Header */}
         <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <span className="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Selected Works</span>
-          <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-text">Portfolio Showcase</h2>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sand/30 border border-sand/50 text-burgundy text-xs font-bold uppercase tracking-widest mb-4">
+            <span>02</span>
+            <span>•</span>
+            <span>Selected Works & Archives</span>
+          </div>
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-burgundy">Portfolio Showcase</h2>
         </div>
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-16 overflow-x-auto pb-4 no-scrollbar">
-          <div className="inline-flex p-1.5 bg-neutral-background rounded-2xl border border-gray-100 shadow-sm relative whitespace-nowrap">
+          <div className="inline-flex p-1.5 bg-creme-light rounded-2xl border border-creme shadow-inner relative whitespace-nowrap">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabChange(tab)}
-                className={`relative px-6 sm:px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 z-10 ${
-                  activeTab === tab ? 'text-white' : 'text-gray-500 hover:text-primary'
+                className={`relative px-6 sm:px-8 py-3 rounded-xl text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 z-10 ${
+                  activeTab === tab ? 'text-creme' : 'text-neutral-muted hover:text-burgundy'
                 }`}
               >
                 {tab}
                 {activeTab === tab && (
                   <motion.div 
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-lg shadow-primary/30"
+                    className="absolute inset-0 bg-burgundy rounded-xl -z-10 shadow-lg shadow-burgundy/20"
                   />
                 )}
               </button>
@@ -66,9 +65,11 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
         </div>
 
         {/* Content Area */}
-        <div className={`min-h-[600px] relative transition-opacity duration-200 ${isAnimating ? 'opacity-0 scale-[0.98]' : 'opacity-100 scale-100'}`}>
+        <div className={`min-h-[550px] relative transition-opacity duration-200 ${isAnimating ? 'opacity-0 scale-[0.98]' : 'opacity-100 scale-100'}`}>
+          
+          {/* Projects Grid */}
           {activeTab === TabType.PROJECTS && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
               {PROJECTS.map((project) => (
                 <div 
                   key={project.id} 
@@ -79,71 +80,86 @@ const PortfolioShowcase: React.FC<PortfolioShowcaseProps> = ({ onSelectProject }
                       onSelectProject?.(project.id);
                     }
                   }}
-                  className="group relative bg-neutral-background rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
+                  className="group relative bg-creme-light/60 rounded-3xl sm:rounded-[2.5rem] overflow-hidden border border-creme hover:border-sand hover:shadow-2xl hover:shadow-burgundy/10 transition-all duration-500 cursor-pointer flex flex-col justify-between"
                 >
-                  <div className="aspect-[16/10] overflow-hidden relative">
-                    <img src={project.image} alt={project.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="aspect-[16/10] overflow-hidden relative bg-neutral-100">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    />
                     {project.badge && (
-                      <div className="absolute top-6 right-6 px-4 py-1.5 bg-white/95 backdrop-blur shadow-sm rounded-full z-10 border border-primary/20">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-primary animate-pulse-soft">
+                      <div className="absolute top-5 right-5 px-3.5 py-1 bg-white/95 backdrop-blur-md shadow-sm rounded-full z-10 border border-sand/40">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-burgundy">
                           {project.badge}
                         </span>
                       </div>
                     )}
                   </div>
-                  <div className="p-8">
-                    <div className="flex gap-2 mb-4">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider rounded-full">{tag}</span>
-                      ))}
+                  
+                  <div className="p-6 sm:p-8 flex flex-col justify-between flex-grow">
+                    <div>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {project.tags.map(tag => (
+                          <span key={tag} className="px-3 py-0.5 bg-dustyPink/20 text-burgundy text-[10px] font-bold uppercase tracking-wider rounded-full border border-dustyPink/40">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="font-serif text-2xl font-bold text-burgundy mb-2 group-hover:text-burgundy-light transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-neutral-muted text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                        {project.description}
+                      </p>
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-neutral-text mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
-                    <p className="text-gray-500 leading-relaxed mb-6">{project.description}</p>
-                    <button 
-                      onClick={() => {
-                        if (project.link && project.link !== '#') {
-                          window.open(project.link, '_blank', 'noopener,noreferrer');
-                        } else {
-                          onSelectProject?.(project.id);
-                        }
-                      }}
-                      className="inline-flex items-center gap-2 text-primary font-bold group/link"
-                    >
-                      {project.link && project.link !== '#' ? 'View Website' : 'View Case Study'} 
-                      <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">north_east</span>
-                    </button>
+
+                    <div className="pt-4 border-t border-creme/80 flex items-center justify-between">
+                      <span className="inline-flex items-center gap-2 text-burgundy font-bold text-xs uppercase tracking-widest group/link">
+                        {project.link && project.link !== '#' ? 'Visit Live Website' : 'Read Case Study'} 
+                        <span className="material-symbols-outlined text-base transition-transform group-hover/link:translate-x-1">
+                          north_east
+                        </span>
+                      </span>
+                      <span className="text-xs text-neutral-muted/60 font-serif italic">
+                        Explore →
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           )}
 
+          {/* Certificates Grid */}
           {activeTab === TabType.CERTIFICATES && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               {CERTIFICATES.map((cert) => (
-                <div key={cert.id} className="p-8 bg-neutral-background rounded-[2rem] border border-gray-100 transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 group">
-                  <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-white text-primary mb-6 shadow-sm group-hover:bg-primary group-hover:text-white transition-colors">
+                <div key={cert.id} className="p-8 bg-creme-light/80 rounded-3xl border border-creme hover:border-sand hover:shadow-xl hover:shadow-burgundy/5 transition-all duration-300 group">
+                  <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-white text-burgundy mb-6 shadow-sm group-hover:bg-burgundy group-hover:text-creme transition-colors">
                     <span className="material-symbols-outlined text-3xl">{cert.icon}</span>
                   </div>
-                  <h3 className="font-display text-xl font-bold text-neutral-text mb-2">{cert.title}</h3>
-                  <p className="text-gray-500 font-medium mb-1">{cert.issuer}</p>
-                  <p className="text-sm text-gray-400 mb-6">{cert.year}</p>
-                  <a href={cert.link} className="text-sm font-bold text-primary hover:underline underline-offset-4">View Certificate</a>
+                  <h3 className="font-serif text-xl font-bold text-burgundy mb-2">{cert.title}</h3>
+                  <p className="text-neutral-muted font-medium mb-1">{cert.issuer}</p>
+                  <p className="text-xs text-sand-dark mb-6">{cert.year}</p>
+                  <a 
+                    href={cert.link} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-xs font-bold uppercase tracking-widest text-burgundy hover:text-dustyPink-dark hover:underline underline-offset-4 flex items-center gap-1"
+                  >
+                    View Credential
+                    <span className="material-symbols-outlined text-sm">open_in_new</span>
+                  </a>
                 </div>
               ))}
             </div>
           )}
 
+          {/* Tech Stack Grid */}
           {activeTab === TabType.TECH_STACK && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              {TECH_STACK.map((tech) => (
-                <div key={tech.name} className="flex flex-col items-center justify-center p-8 bg-neutral-background rounded-[2rem] border border-transparent hover:border-primary/20 hover:bg-white transition-all hover:shadow-lg group">
-                  <div className={`mb-4 transition-transform group-hover:scale-110 group-hover:animate-bounce ${tech.color}`}>
-                    <span className="material-symbols-outlined text-5xl">{tech.icon}</span>
-                  </div>
-                  <span className="font-bold text-gray-700 text-sm group-hover:text-primary transition-colors text-center">{tech.name}</span>
-                </div>
-              ))}
+            <div id="skills" className="w-full max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <TechStackGrid />
             </div>
           )}
         </div>

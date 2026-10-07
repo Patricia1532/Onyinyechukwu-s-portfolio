@@ -1,13 +1,14 @@
 
+
 import { Project, Certificate, TechItem } from './types';
 
 export const PROJECTS: Project[] = [
   {
     id: 'spotlight',
     title: 'Spotlyte',
-    description: 'End-to-end product design of spotlyte, a next generation LED taxi advertising platform, built to redefine outdoor advertising in Lagos through smart, mobile, high-impact digital displays.',
-    image: '/spotlyte.png',
-    tags: ['UX/UI', 'Figma'],
+    description: 'An innovative advertising platform designed to transform digital advertising in emerging markets.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    tags: ['UX/UI', 'Advertising'],
     link: '#',
     badge: 'Coming Soon'
   },
@@ -15,23 +16,23 @@ export const PROJECTS: Project[] = [
     id: 'gnc-perfume',
     title: 'G\u00A0&\u00A0C Perfume Store',
     description: 'A personal e-commerce project focused on building a clean, responsive, and visually engaging shopping experience.',
-    image: '/perf.png',
+    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=80',
     tags: ['Frontend', 'React'],
     link: '#'
   },
   {
     id: 'fjko-law',
     title: 'FJKO Law Firm',
-    description: 'Modern law firm website for FJKO designed to clearly communicate legal services, strengthen credibility and guide potential clients toward consultation and engagement',
+    description: 'Establishing a digital presence for FJKO that centers on clarity, accessibility, and professional trust.',
     image: '/firm.png',
-    tags: ['UX/UI', 'Figma'],
+    tags: ['UX/UI', 'Legal'],
     link: '#'
   },
   {
     id: 'bluepulse-travel',
     title: 'BluePulse Travel Agency',
-    description: 'A modern travel agency website for blue Pulse, built with a clean frontend experience that simplifies service discovery and encourages client bookings',
-    image: '/agency.png',
+    description: 'A modern travel booking platform designed to provide seamless adventure discovery and vacation planning.',
+    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
     tags: ['UX/UI', 'Web Design'],
     link: 'http://bluepulsetraveltours.com'
   }
@@ -46,6 +47,7 @@ export const CERTIFICATES: Certificate[] = [
     link: 'digi.png',
     icon: 'school'
   },
+
   {
     id: 'c2',
     title: 'Software Development bootcamp',
@@ -54,6 +56,7 @@ export const CERTIFICATES: Certificate[] = [
     link: '#',
     icon: 'code'
   },
+
   {
     id: 'c3',
     title: 'Complete UI/UX design, Figma',
@@ -65,14 +68,60 @@ export const CERTIFICATES: Certificate[] = [
 ];
 
 export const TECH_STACK: TechItem[] = [
-  { name: 'HTML5', icon: 'html', color: 'text-orange-600' },
-  { name: 'CSS3', icon: 'css', color: 'text-blue-600' },
-  { name: 'JavaScript', icon: 'javascript', color: 'text-yellow-500' },
-  { name: 'React', icon: 'code_blocks', color: 'text-cyan-500' },
-  { name: 'Tailwind CSS', icon: 'brush', color: 'text-teal-500' },
-  { name: 'Node.js', icon: 'terminal', color: 'text-green-600' },
-  { name: 'Bootstrap', icon: 'grid_view', color: 'text-purple-600' },
-  { name: 'Material UI', icon: 'widgets', color: 'text-blue-500' },
-  { name: 'Vite', icon: 'bolt', color: 'text-yellow-400' }
+  {
+    name: 'FIGMA',
+    fullName: 'Figma',
+    tags: 'Ideation · Collaborate · Design · Prototype',
+    iconType: 'figma',
+    icon: 'brush',
+    color: 'text-[#A259FF]'
+  },
+  {
+    name: 'ADOBE ILLUSTRATOR',
+    fullName: 'Adobe Illustrator',
+    tags: 'Brand Design · Visual Design · Vector Assets',
+    iconType: 'illustrator',
+    icon: 'palette',
+    color: 'text-[#FF9A00]'
+  },
+  {
+    name: 'ADOBE INDESIGN',
+    fullName: 'Adobe InDesign',
+    tags: 'Editorial Layout · Typography · Print & Specs',
+    iconType: 'indesign',
+    icon: 'menu_book',
+    color: 'text-[#FF3366]'
+  },
+  {
+    name: 'CLAUDE',
+    fullName: 'Anthropic Claude',
+    tags: 'Ideation ',
+    iconType: 'claude',
+    icon: 'psychology',
+    color: 'text-[#CC785C]'
+  },
+  {
+    name: 'VS CODE',
+    fullName: 'Visual Studio Code',
+    tags: 'Front-End Coding · React · Debugging',
+    iconType: 'vscode',
+    icon: 'terminal',
+    color: 'text-[#007ACC]'
+  },
+  {
+    name: 'LOVABLE',
+    fullName: 'Lovable',
+    tags: 'Vibecoding · Ideation',
+    iconType: 'lovable',
+    icon: 'favorite',
+    color: 'text-[#FF5722]'
+  },
+  {
+    name: 'VERCEL',
+    fullName: 'Vercel',
+    tags: 'Hosting Projects · Deployment',
+    iconType: 'vercel',
+    icon: 'change_history',
+    color: 'text-neutral-900'
+  }
 ];
-
